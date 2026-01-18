@@ -1,0 +1,359 @@
+.main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+/* Background Effects */
+.bgGlow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, rgba(220, 38, 38, 0.05) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bgGrid {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Floating 3D Effect Cubes */
+.floatingElements {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floatingCube {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(220, 38, 38, 0.3);
+    background: rgba(220, 38, 38, 0.05);
+    transform: rotate(45deg);
+    animation: float 6s ease-in-out infinite;
+}
+
+.cube1 {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+    opacity: 0.6;
+}
+
+.cube2 {
+    top: 60%;
+    right: 8%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 2s;
+    opacity: 0.4;
+}
+
+.cube3 {
+    bottom: 20%;
+    left: 15%;
+    width: 30px;
+    height: 30px;
+    animation-delay: 4s;
+    opacity: 0.5;
+}
+
+/* Content Container */
+.content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 600px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Logo */
+.logoContainer {
+    margin-bottom: 0.25rem;
+    animation: float 4s ease-in-out infinite;
+}
+
+.logo {
+    width: 380px;
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(220, 38, 38, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* Coming Soon Badge */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    background: rgba(220, 38, 38, 0.15);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #f87171;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.badgeDot {
+    width: 8px;
+    height: 8px;
+    background: #ef4444;
+    border-radius: 50%;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Tagline */
+.tagline {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--neutral-100);
+    margin: 0.5rem 0;
+}
+
+.highlight {
+    background: linear-gradient(135deg, #ef4444 0%, #f97316 50%, #eab308 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 4s ease infinite;
+}
+
+/* Features */
+.features {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--neutral-300);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.featureIcon {
+    width: 20px;
+    height: 20px;
+    color: #f87171;
+}
+
+.divider {
+    color: var(--neutral-600);
+    font-size: 1.2rem;
+}
+
+/* Location */
+.location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    color: var(--neutral-300);
+    font-size: 0.95rem;
+}
+
+.locationIcon {
+    width: 18px;
+    height: 18px;
+    color: #f87171;
+}
+
+/* CTA Section */
+.ctaSection {
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.ctaText {
+    color: var(--neutral-400);
+    font-size: 0.9rem;
+}
+
+/* Contact Buttons */
+.contactButtons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contactBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btnIcon {
+    width: 22px;
+    height: 22px;
+}
+
+/* Instagram Button */
+.instagramBtn {
+    background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #F77737 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(131, 58, 180, 0.3);
+}
+
+.instagramBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(131, 58, 180, 0.4);
+}
+
+/* Email Button */
+.emailBtn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--neutral-100);
+}
+
+.emailBtn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(220, 38, 38, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+.footer {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--neutral-600);
+    font-size: 0.8rem;
+    z-index: 1;
+}
+
+/* Keyframe Animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 8px #ef4444;
+    }
+
+    50% {
+        opacity: 0.5;
+        box-shadow: 0 0 16px #ef4444;
+    }
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .main {
+        padding: 1.5rem;
+    }
+
+    .logo {
+        width: 220px;
+    }
+
+    .features {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .contactButtons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .contactBtn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .floatingCube {
+        display: none;
+    }
+}
