@@ -1,8 +1,8 @@
 'use client';
 
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import styles from "./page.module.css";
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import styles from './page.module.css';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -12,107 +12,259 @@ export default function Home() {
   }, []);
 
   return (
-    <main className={styles.main}>
-      {/* Animated Background */}
-      <div className={styles.bgGlow}></div>
-      <div className={styles.bgGrid}></div>
-      
-      {/* Floating 3D Elements */}
-      <div className={styles.floatingElements}>
-        <div className={`${styles.floatingCube} ${styles.cube1}`}></div>
-        <div className={`${styles.floatingCube} ${styles.cube2}`}></div>
-        <div className={`${styles.floatingCube} ${styles.cube3}`}></div>
-      </div>
+    <main className={`${styles.main} ${mounted ? styles.mounted : ''}`}>
+      {/* Paper texture & blueprint grid */}
+      <div className={styles.paper} aria-hidden />
+      <div className={styles.grid} aria-hidden />
 
-      {/* Main Content */}
-      <div className={`${styles.content} ${mounted ? styles.visible : ''}`}>
-        {/* Logo */}
-        <div className={styles.logoContainer}>
+      {/* Page registration marks */}
+      <span className={`${styles.regMark} ${styles.regTL}`} aria-hidden>+</span>
+      <span className={`${styles.regMark} ${styles.regTR}`} aria-hidden>+</span>
+      <span className={`${styles.regMark} ${styles.regBL}`} aria-hidden>+</span>
+      <span className={`${styles.regMark} ${styles.regBR}`} aria-hidden>+</span>
+
+      {/* Top meta strip */}
+      <header className={styles.topBar}>
+        <div className={styles.brandMark}>
           <Image
             src="/bricks_lab_logo.png"
-            alt="Bricks Lab Logo"
-            width={280}
-            height={200}
+            alt="Bricks Lab"
+            width={140}
+            height={100}
             className={styles.logo}
             priority
           />
+          <div className={styles.brandText}>
+            <span className={styles.brandName}>Bricks Lab</span>
+            <span className={styles.brandTag}>HARDWARE × SOFTWARE / STUDIO</span>
+          </div>
         </div>
 
-        {/* Coming Soon Badge */}
-        <div className={styles.badge}>
-          <span className={styles.badgeDot}></span>
-          Coming Soon
+        <div className={styles.topMeta}>
+          <span>N°—01</span>
+          <span className={styles.diamond} />
+          <span>NEW DELHI / IND</span>
         </div>
+      </header>
 
-        {/* Tagline */}
+      {/* Hero */}
+      <section className={styles.hero}>
+        <span className={styles.heroLabel}>
+          <span className={styles.tick} /> A WORKING LAB FOR BUILDERS
+        </span>
+
         <h1 className={styles.tagline}>
-          Turning Ideas into <span className={styles.highlight}>3D Reality</span>
+          <span className={styles.tlLine}>turning&nbsp;ideas</span>
+          <span className={styles.tlLine}>
+            into&nbsp;
+            <span className={styles.realityWrap}>
+              <span className={styles.reality}>reality</span>
+              <svg
+                className={styles.circleSVG}
+                viewBox="0 0 360 140"
+                preserveAspectRatio="none"
+                aria-hidden
+              >
+                <path
+                  d="M 22 72 C 18 30, 110 14, 184 14 C 270 16, 350 38, 348 76 C 346 112, 248 132, 162 128 C 82 124, 12 100, 24 60"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.6"
+                  strokeLinecap="round"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </svg>
+            </span>
+            <span className={styles.period}>.</span>
+          </span>
         </h1>
 
-        {/* Features */}
-        <div className={styles.features}>
-          <div className={styles.feature}>
-            <svg className={styles.featureIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-              <path d="M2 17l10 5 10-5"/>
-              <path d="M2 12l10 5 10-5"/>
-            </svg>
-            <span>High-Quality Prints</span>
-          </div>
-          <div className={styles.divider}>•</div>
-          <div className={styles.feature}>
-            <svg className={styles.featureIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-            </svg>
-            <span>Custom Builds</span>
-          </div>
+        <div className={styles.heroFoot}>
+          <span className={styles.arrow}>↳</span>
+          <p className={styles.subtagline}>
+            End-to-end hardware prototyping and custom software solutions —
+            from a single sketch to a shipped product.
+          </p>
         </div>
 
-        {/* Location */}
-        <div className={styles.location}>
-          <svg className={styles.locationIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-          <span>Delhi Based</span>
+        {/* Vertical dimension line decoration */}
+        <div className={styles.dimensionLine} aria-hidden>
+          <span className={styles.dimCap}>▲</span>
+          <span className={styles.dimLabel}>HW · SW</span>
+          <span className={styles.dimCap}>▼</span>
         </div>
+      </section>
 
-        {/* CTA Section */}
-        <div className={styles.ctaSection}>
-          <p className={styles.ctaText}>Get in touch for orders & inquiries</p>
-          
-          <div className={styles.contactButtons}>
-            {/* Instagram Button */}
-            <a 
-              href="https://www.instagram.com/lab.bricks/?utm_source=ig_web_button_share_sheet"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.contactBtn} ${styles.instagramBtn}`}
-            >
-              <svg className={styles.btnIcon} viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-              <span>@lab.bricks</span>
-            </a>
+      {/* Service blocks */}
+      <section className={styles.services} aria-label="Services">
+        {/* 01 — HARDWARE */}
+        <article className={styles.svc}>
+          <span className={`${styles.svcCorner} ${styles.cTL}`} aria-hidden>+</span>
+          <span className={`${styles.svcCorner} ${styles.cTR}`} aria-hidden>+</span>
+          <span className={`${styles.svcCorner} ${styles.cBL}`} aria-hidden>+</span>
+          <span className={`${styles.svcCorner} ${styles.cBR}`} aria-hidden>+</span>
 
-            {/* Email Button */}
-            <a 
-              href="mailto:info@brickslab.in"
-              className={`${styles.contactBtn} ${styles.emailBtn}`}
-            >
-              <svg className={styles.btnIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-              <span>info@brickslab.in</span>
-            </a>
-          </div>
+          <header className={styles.svcHead}>
+            <span className={styles.svcIndex}>01</span>
+            <div className={styles.svcTitleGroup}>
+              <h2 className={styles.svcTitle}>Hardware</h2>
+              <span className={styles.svcSub}>3D Printing &nbsp;/&nbsp; Prototyping</span>
+            </div>
+          </header>
+
+          <ul className={styles.svcList}>
+            <li>
+              <span className={styles.lineNo}>a.</span>
+              <div className={styles.lineBody}>
+                <strong>Fast Prototyping</strong>
+                <span>Iterate designs in days, not weeks.</span>
+              </div>
+            </li>
+            <li>
+              <span className={styles.lineNo}>b.</span>
+              <div className={styles.lineBody}>
+                <strong>MVP Builds</strong>
+                <span>From concept to working product.</span>
+              </div>
+            </li>
+            <li>
+              <span className={styles.lineNo}>c.</span>
+              <div className={styles.lineBody}>
+                <strong>Quick Turnaround</strong>
+                <span>Express delivery on rush jobs.</span>
+              </div>
+            </li>
+            <li>
+              <span className={styles.lineNo}>d.</span>
+              <div className={styles.lineBody}>
+                <strong>Material &amp; Color Support</strong>
+                <span>PLA · ABS · PETG · TPU and more.</span>
+              </div>
+            </li>
+          </ul>
+
+          <footer className={styles.svcFoot}>
+            <span>FILE · BL-HW.001</span>
+            <span>SHEET 01 / 02</span>
+          </footer>
+        </article>
+
+        {/* 02 — SOFTWARE */}
+        <article className={styles.svc}>
+          <span className={`${styles.svcCorner} ${styles.cTL}`} aria-hidden>+</span>
+          <span className={`${styles.svcCorner} ${styles.cTR}`} aria-hidden>+</span>
+          <span className={`${styles.svcCorner} ${styles.cBL}`} aria-hidden>+</span>
+          <span className={`${styles.svcCorner} ${styles.cBR}`} aria-hidden>+</span>
+
+          <header className={styles.svcHead}>
+            <span className={styles.svcIndex}>02</span>
+            <div className={styles.svcTitleGroup}>
+              <h2 className={styles.svcTitle}>Software</h2>
+              <span className={styles.svcSub}>Personal &nbsp;/&nbsp; SMB &nbsp;/&nbsp; Enterprise</span>
+            </div>
+          </header>
+
+          <ul className={styles.svcList}>
+            <li>
+              <span className={styles.lineNo}>a.</span>
+              <div className={styles.lineBody}>
+                <strong>Web &amp; Native Apps</strong>
+                <span>Android · iOS · Windows · Linux.</span>
+              </div>
+            </li>
+            <li>
+              <span className={styles.lineNo}>b.</span>
+              <div className={styles.lineBody}>
+                <strong>E-commerce &amp; ERP</strong>
+                <span>Storefronts and business systems.</span>
+              </div>
+            </li>
+            <li>
+              <span className={styles.lineNo}>c.</span>
+              <div className={styles.lineBody}>
+                <strong>IoT &amp; AI Specialized</strong>
+                <span>Connected devices and intelligent automation.</span>
+              </div>
+            </li>
+            <li>
+              <span className={styles.lineNo}>d.</span>
+              <div className={styles.lineBody}>
+                <strong>Support &amp; Consultation</strong>
+                <span>Technical guidance from idea to launch.</span>
+              </div>
+            </li>
+          </ul>
+
+          <footer className={styles.svcFoot}>
+            <span>FILE · BL-SW.002</span>
+            <span>SHEET 02 / 02</span>
+          </footer>
+        </article>
+      </section>
+
+      {/* Marquee ticker */}
+      <div className={styles.tickerWrap} aria-hidden>
+        <div className={styles.ticker}>
+          {Array.from({ length: 2 }).map((_, i) => (
+            <div className={styles.tickerRow} key={i}>
+              <span>PROTOTYPE</span><span className={styles.sep}>◆</span>
+              <span>ITERATE</span><span className={styles.sep}>◆</span>
+              <span>SHIP</span><span className={styles.sep}>◆</span>
+              <span>3D PRINT</span><span className={styles.sep}>◆</span>
+              <span>WEB</span><span className={styles.sep}>◆</span>
+              <span>NATIVE APPS</span><span className={styles.sep}>◆</span>
+              <span>E-COMMERCE</span><span className={styles.sep}>◆</span>
+              <span>ERP</span><span className={styles.sep}>◆</span>
+              <span>IOT</span><span className={styles.sep}>◆</span>
+              <span>AI</span><span className={styles.sep}>◆</span>
+              <span>BRICKS LAB</span><span className={styles.sep}>◆</span>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className={styles.footer}>
-        <p>© 2026 Bricks Lab. All rights reserved.</p>
+      {/* Contact */}
+      <section className={styles.contact}>
+        <div className={styles.contactLeft}>
+          <span className={styles.locDot} />
+          <div>
+            <span className={styles.contactLbl}>LOCATION</span>
+            <span className={styles.contactVal}>New Delhi · serving worldwide</span>
+          </div>
+        </div>
+
+        <div className={styles.contactBtns}>
+          <a
+            href="mailto:vishal@brickslab.in"
+            className={styles.cta}
+          >
+            <span className={styles.ctaArrow}>→</span>
+            <span className={styles.ctaTxt}>
+              <span className={styles.ctaLbl}>WRITE TO US</span>
+              <span className={styles.ctaVal}>vishal@brickslab.in</span>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      {/* Title block / footer */}
+      <footer className={styles.titleBlock}>
+        <div className={styles.tbCol}>
+          <span className={styles.tbLbl}>DRAWING</span>
+          <span className={styles.tbVal}>BRICKS LAB / LANDING</span>
+        </div>
+        <div className={styles.tbCol}>
+          <span className={styles.tbLbl}>REV</span>
+          <span className={styles.tbVal}>02 — 2026.05</span>
+        </div>
+        <div className={styles.tbCol}>
+          <span className={styles.tbLbl}>SCALE</span>
+          <span className={styles.tbVal}>1 : 1</span>
+        </div>
+        <div className={styles.tbCol}>
+          <span className={styles.tbLbl}>©</span>
+          <span className={styles.tbVal}>2026 BRICKS LAB</span>
+        </div>
       </footer>
     </main>
   );
